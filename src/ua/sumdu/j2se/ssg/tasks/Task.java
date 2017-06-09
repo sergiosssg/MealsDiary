@@ -21,7 +21,7 @@ public class Task {
     public Task(String taskTitle, int time){
 
         title = new String(taskTitle);
-        endTime = startTime = time;
+        endTime = startTime = (time < 0)? 0 : time;
         active = false;
         interval = 0;
     } // Task(String title, int time)
@@ -35,19 +35,35 @@ public class Task {
      * @param interval period in seconds, through which task could be accomplished
      */
     public Task(String taskTitle, int start, int end, int interval){
-
         title = new String(taskTitle);
-        startTime = start;
-        endTime = end;
+        startTime = (start < 0 || (end - start) < 0)?  0 : start;
+        endTime = (end < 0 || (end - start) < 0)? 0 : end;
         active = false;
-        this.interval = interval;
+        this.interval = (interval < 0)? 0 : interval;
     } // Task(String title, int start, int end, int interval)
+
+    /**
+     * Creates new task, which is strict copy of task given in parameter
+     * @param task , to be fully copied
+     */
+    public Task (Task task){
+        if(task != null){
+            this.title = task.getTitle();
+            if(task.isRepeated()){
+                this.startTime = task.getStartTime();
+                this.endTime = task.getEndTime();
+            } else {
+                this.startTime = this.endTime = task.getTime();
+            }
+            this.active = task.isActive();
+        } // if(task != null)
+    } //  Task (Task )
 
 
     public String getTitle(){ return title;}
 
     public void setTitle(String taskTitle){
-        title = new String(taskTitle);
+        title = taskTitle;
     }
 
 
@@ -68,10 +84,10 @@ public class Task {
 
     /**
      * If this task was repeated, task should be not repeated
-     * @param time
+     * @param time int
      */
     public void setTime(int time){
-        endTime = startTime = time;
+        endTime = startTime = (time < 0)? 0 : time;
         interval = 0;
     }
 
@@ -91,9 +107,9 @@ public class Task {
     }
 
     public void setTime(int start, int end, int interval){
-        startTime = start;
-        endTime = end;
-        this.interval = interval;
+        startTime = (start < 0 || (end - start) < 0)? 0 : start;
+        endTime = (end < 0 || (end - start) < 0)? 0 : end;
+        this.interval = (interval < 0)? 0 : interval;
     }
 
 
@@ -122,6 +138,9 @@ public class Task {
         }
         return nextTime;
     } // int nextTimeAfter(int currTime)
+
+
+
 
 
 } // class Task
