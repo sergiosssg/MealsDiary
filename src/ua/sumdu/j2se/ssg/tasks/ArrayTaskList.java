@@ -3,7 +3,7 @@ package ua.sumdu.j2se.ssg.tasks;
 /**
  * Created by SSG on 24.05.2017.
  */
-public class ArrayTaskList {
+public class ArrayTaskList extends TaskList{
 
     private static final int MINIMAL_OF_TASKS_IN_ARRAY = 16;
 
@@ -78,50 +78,6 @@ public class ArrayTaskList {
         Task retTask = arrayOfTasks[index];
         return retTask;
     } // getTask(int )
-
-
-    ArrayTaskList incoming(int from, int to){
-        ArrayTaskList returnedTaskArray =  new ArrayTaskList();
-
-        try {
-            if(from < 0 || to < 0) throw new IllegalArgumentException("Arguments can't be negative");
-            if(to - from < 0)  throw new IllegalArgumentException("Difference between second and first arguments can't be negative");
-
-            if(size() > 0){
-                for(Task tt : arrayOfTasks){
-                    if(!tt.isActive() || (tt.getStartTime() > to || tt.getEndTime() <= from )){
-                        // go to the next task, that's why task or start after to, or ends till from
-                        continue;
-                    }
-                    if(!tt.isRepeated() && tt.getTime() > from && tt.getTime() <= to){
-                        // one single active task, to be performed within given range from to
-                        returnedTaskArray.add(tt);
-                    }
-                    else if (tt.isRepeated()){
-                        if(( tt.getStartTime() > from && tt.getStartTime() <= to ) ||
-                                (tt.getEndTime() > from && tt.getEndTime() <= to)){
-                            // task fits boundary conditions
-                            returnedTaskArray.add(tt);
-                        }
-                        else if (tt.getStartTime() <= from) {
-                            int currtime = tt.getStartTime();
-                            while (currtime <= from) currtime += tt.getRepeatInterval();
-                            if (currtime <= to) {
-                                // active task, scheduled several times to perform, started already before from
-                                // and should be performed till to
-                                returnedTaskArray.add(tt);
-                            }
-                        }
-                    }
-                } // for( ...
-            }  // if(size() > 0 ...
-        } catch ( IllegalArgumentException ex ){
-            System.err.println(ex.getMessage());
-            ex.printStackTrace();
-        } finally {
-            return returnedTaskArray;
-        }
-    } // incoming(int , int )
 
 
 } // class ArrayTaskList
