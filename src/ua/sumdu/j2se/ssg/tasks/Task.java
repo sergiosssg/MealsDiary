@@ -7,8 +7,8 @@ public class Task {
 
     private String title;
     private boolean active;
-    private int startTime;
-    private int endTime;
+    private long startTime;
+    private long endTime;
     private int interval;
 
     //
@@ -61,7 +61,7 @@ public class Task {
      */
     public Task (Task task){
         try{
-            if(task != null) throw new NullPointerException("Task can't be null");
+            if(task == null) throw new NullPointerException("Task can't be null");
             this.title = task.getTitle();
             if(task.isRepeated()){
                 this.startTime = task.getStartTime();
@@ -102,7 +102,7 @@ public class Task {
      * @return time, from which task could be performed, excluding this value
      */
     public int getTime(){
-        return startTime;
+        return (int)startTime;
     }
 
     /**
@@ -121,12 +121,12 @@ public class Task {
     } // setTime(int )
 
     public int getStartTime(){
-        return startTime;
+        return (int)startTime;
     }
 
 
     public int getEndTime(){
-        return endTime;
+        return (int)endTime;
     }
 
 
@@ -154,7 +154,7 @@ public class Task {
      * be executed any more, function returns -1
      */
     public int nextTimeAfter(int currTime){
-        int returnedValue = -1;
+        long returnedValue = -1;
         try{
             if (currTime < 0) throw new IllegalArgumentException("Time can't be negative");
 
@@ -163,7 +163,7 @@ public class Task {
             } else if( currTime < startTime ){
                 returnedValue = startTime;
             } else {
-                int nextTime;
+                long nextTime;
 
                 for (nextTime = startTime;nextTime <= currTime;){
                     nextTime += interval;
@@ -175,7 +175,7 @@ public class Task {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
         } finally {
-            return returnedValue;
+            return (int)returnedValue;
         }
     } // int nextTimeAfter(int currTime)
 

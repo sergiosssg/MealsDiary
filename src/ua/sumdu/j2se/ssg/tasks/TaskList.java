@@ -5,11 +5,19 @@ package ua.sumdu.j2se.ssg.tasks;
  */
 public abstract class TaskList {
 
+    protected int sizeOfArray;
+
     abstract public void add(Task task);
 
     abstract public boolean remove(Task task);
 
-    abstract public int size();
+    public int size(){
+        return sizeOfArray;
+    } // size();
+
+    public boolean isEmpty() {
+        return (sizeOfArray == 0);
+    } // isEmpty()
 
     abstract public Task getTask(int index);
 
@@ -20,7 +28,7 @@ public abstract class TaskList {
             if(from < 0 || to < 0) throw new IllegalArgumentException("Arguments can't be negative");
             if(to - from < 0)  throw new IllegalArgumentException("Difference between second and first arguments can't be negative");
 
-            if(size() > 0){
+            if( !isEmpty()){
                 for(int index_Of_Task = 0; index_Of_Task < size(); index_Of_Task++){
                     Task tt = getTask(index_Of_Task);
                     if(!tt.isActive() || (tt.getStartTime() > to || tt.getEndTime() <= from )){
@@ -38,7 +46,7 @@ public abstract class TaskList {
                             returnedTaskArray.add(tt);
                         }
                         else if (tt.getStartTime() <= from) {
-                            int currtime = tt.getStartTime();
+                            long currtime = tt.getStartTime();
                             while (currtime <= from) currtime += tt.getRepeatInterval();
                             if (currtime <= to) {
                                 // active task, scheduled several times to perform, started already before from
@@ -57,4 +65,4 @@ public abstract class TaskList {
         }
     } // incoming(int , int )
 
-}
+} // class TaskList

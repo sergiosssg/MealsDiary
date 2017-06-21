@@ -7,8 +7,7 @@ public class ArrayTaskList extends TaskList{
 
     private static final int MINIMAL_OF_TASKS_IN_ARRAY = 16;
 
-    protected Task arrayOfTasks[];
-    protected int sizeOfArray;
+    private Task arrayOfTasks[];
 
 
     public ArrayTaskList(){
@@ -16,7 +15,7 @@ public class ArrayTaskList extends TaskList{
         sizeOfArray = 0;
     } // ArrayTaskList()
 
-
+    @Override
     public void add(Task task){
         try{
             if (task == null) throw new NullPointerException("Added task can't be null");
@@ -35,17 +34,18 @@ public class ArrayTaskList extends TaskList{
         }
     } // add(Task )
 
+    @Override
     public boolean remove(Task task){
         boolean success = false;
 
         try{
             if(task == null) throw new NullPointerException("Task to be deleted can't be null");
-            if(sizeOfArray > 0){
+            if(size() > 0){
                 int index = 0;
                 for(Task tt : arrayOfTasks){
                     if(tt == task || tt.equals(task)){
                         // delete element
-                        if(sizeOfArray > 1){
+                        if(size() > 1){
                             Task[] newArrayOfTasks = new Task[sizeOfArray - 1];
                             System.arraycopy(arrayOfTasks, 0, newArrayOfTasks, 0, index);
                             System.arraycopy(arrayOfTasks, index + 1, newArrayOfTasks, index, sizeOfArray - index - 1);
@@ -56,7 +56,7 @@ public class ArrayTaskList extends TaskList{
                             sizeOfArray = 0;
                         }
                         success = true;
-                        return success;
+                        break;
                     }
                     ++index;
                 } // for
@@ -69,14 +69,21 @@ public class ArrayTaskList extends TaskList{
         }
     } // remove(Task )
 
-
-    public int size(){
-        return sizeOfArray;
-    } // size()
-
+    @Override
     public Task getTask(int index){
-        Task retTask = arrayOfTasks[index];
-        return retTask;
+        Task returnedTask = null;
+
+        try{
+            if(index < 0)  throw new NegativeArraySizeException("Index can't be negative");
+            if( index >= size()) throw new ArrayIndexOutOfBoundsException("Index can't be greater of index of last element in array");
+
+            returnedTask = arrayOfTasks[index];
+        } catch (ArrayIndexOutOfBoundsException | NegativeArraySizeException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            return returnedTask;
+        }
     } // getTask(int )
 
 
