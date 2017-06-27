@@ -3,7 +3,7 @@ package ua.sumdu.j2se.ssg.tasks;
 /**
  * Created by SSG on 13.06.2017.
  */
-public abstract class TaskList {
+public abstract class TaskList implements Iterable<Task>{
 
     protected int sizeOfArray;
 
@@ -21,7 +21,7 @@ public abstract class TaskList {
 
     abstract public Task getTask(int index);
 
-    TaskList incoming(int from, int to){
+    public TaskList incoming(int from, int to){
         TaskList returnedTaskArray =  new ArrayTaskList();
 
         try {
@@ -64,5 +64,6 @@ public abstract class TaskList {
             return returnedTaskArray;
         }
     } // incoming(int , int )
+
 
 } // class TaskList

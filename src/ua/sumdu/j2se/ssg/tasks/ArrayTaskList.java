@@ -1,5 +1,8 @@
 package ua.sumdu.j2se.ssg.tasks;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * Created by SSG on 24.05.2017.
  */
@@ -14,6 +17,21 @@ public class ArrayTaskList extends TaskList{
         arrayOfTasks = null;
         sizeOfArray = 0;
     } // ArrayTaskList()
+
+    private void shrinkElement(int index){
+        if(size() > 1){
+            Task[] newArrayOfTasks = new Task[sizeOfArray - 1];
+            System.arraycopy(arrayOfTasks, 0, newArrayOfTasks, 0, index);
+            System.arraycopy(arrayOfTasks, index + 1, newArrayOfTasks, index, sizeOfArray - index - 1);
+            --sizeOfArray;
+            arrayOfTasks = newArrayOfTasks;
+        } else {
+            arrayOfTasks = new Task[MINIMAL_OF_TASKS_IN_ARRAY];
+            sizeOfArray = 0;
+        }
+    } // void shrinkElement(int )
+
+
 
     @Override
     public void add(Task task){
@@ -45,16 +63,7 @@ public class ArrayTaskList extends TaskList{
                 for(Task tt : arrayOfTasks){
                     if(tt == task || tt.equals(task)){
                         // delete element
-                        if(size() > 1){
-                            Task[] newArrayOfTasks = new Task[sizeOfArray - 1];
-                            System.arraycopy(arrayOfTasks, 0, newArrayOfTasks, 0, index);
-                            System.arraycopy(arrayOfTasks, index + 1, newArrayOfTasks, index, sizeOfArray - index - 1);
-                            --sizeOfArray;
-                            arrayOfTasks = newArrayOfTasks;
-                        } else {
-                            arrayOfTasks = new Task[MINIMAL_OF_TASKS_IN_ARRAY];
-                            sizeOfArray = 0;
-                        }
+                        shrinkElement(index);
                         success = true;
                         break;
                     }
@@ -86,5 +95,54 @@ public class ArrayTaskList extends TaskList{
         }
     } // getTask(int )
 
+
+    public Iterator<Task> iterator(){
+        return new ArrayListIterator();
+    } // Iterator<Task> iterator()
+
+
+
+    class ArrayListIterator implements Iterator<Task>{
+        private int   nextIndex;
+        private int lastReturned = -1;
+
+        ArrayListIterator(){
+            nextIndex = 0;
+
+        }
+
+        @Override
+        public boolean hasNext() {
+            if( nextIndex < size()) return true;
+            return false;
+        } // boolean hasNext()
+
+        @Override
+        public Task next() throws NoSuchElementException {
+
+            int cursor = nextIndex;
+            Task nextTask = null;
+
+            try {
+                nextTask = getTask(cursor);
+                lastReturned = cursor;
+                nextIndex = cursor + 1;
+                return nextTask;
+            } catch (IndexOutOfBoundsException e) {
+                System.err.println(e.getMessage());
+                System.err.println(e.getStackTrace());
+                throw new NoSuchElementException();
+            }
+        } // Task next()
+
+        @Override
+        public void remove() throws IllegalStateException, NullPointerException, NoSuchElementException, UnsupportedOperationException{
+            if (lastReturned == -1) {
+                throw new IllegalStateException("it's necessary to call 'next' before");
+            }
+            shrinkElement(nextIndex = lastReturned);
+            lastReturned = -1;
+        } // void remove()
+    } // class ArrayListIterator
 
 } // class ArrayTaskList

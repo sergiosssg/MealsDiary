@@ -1,5 +1,8 @@
 package ua.sumdu.j2se.ssg.tasks;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * Created by SSG on 13.06.2017.
  */
@@ -10,6 +13,52 @@ public class LinkedTaskList extends TaskList {
         Node prev;
         Task value;
     } // class Node
+
+
+    public Iterator<Task> iterator(){
+        return new LinkedListIterator();
+    } // Iterator<Task> iterator()
+
+    class LinkedListIterator implements Iterator<Task>{
+        Node  nextNode;
+        Node  lastReturnedNode = null;
+        int   nextIndex;
+
+        LinkedListIterator(){
+            nextNode = head;
+
+            nextIndex = 0;
+        } // LinkedListIterator()
+
+        @Override
+        public boolean hasNext() {
+            if(nextNode != null) return true;
+            return false;
+        } // boolean hasNext()
+
+        @Override
+        public Task next() {
+            if(!hasNext()) throw new NoSuchElementException("There aren't next task in list");
+            lastReturnedNode = nextNode;
+            nextNode = nextNode.next;
+            return lastReturnedNode.value;
+        } // Task next()
+
+        @Override
+        public void remove() throws IllegalStateException, NoSuchElementException{
+            if (lastReturnedNode == null)   throw new IllegalStateException();
+
+            Node lastNext = lastReturnedNode.next;
+
+            if(size() > 1){
+                unlink(lastReturnedNode);
+            } else {
+                tail = head = null;
+            }
+            lastNext = null;
+            sizeOfArray--;
+        } // void remove()
+    } // class LinkedListIterator
 
     Node head;
     Node tail;
@@ -113,4 +162,5 @@ public class LinkedTaskList extends TaskList {
             return returnedTask;
         }
     } // getTask(int )
+
 }  // class LinkedTaskList
