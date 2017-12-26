@@ -1,5 +1,7 @@
 package ua.sumdu.j2se.ssg.tasks;
 
+import java.util.Date;
+
 /**
  * Created by SSG on 26.04.2017.
  */
@@ -7,8 +9,8 @@ public class Task {
 
     private String title;
     private boolean active;
-    private long startTime;
-    private long endTime;
+    Date startTime;
+    Date endTime;
     private int interval;
 
     //
@@ -18,18 +20,35 @@ public class Task {
      * @param taskTitle new task gets deep copy of this parameter
      * @param time when should be performed
      */
-    public Task(String taskTitle, int time){
+    public Task(String taskTitle, Date time){
         try{
-            if(time < 0) throw new IllegalArgumentException("Time can't have negative value");
             title = taskTitle;
-            endTime = startTime =  time;
+            endTime = startTime =  (Date)time.clone();
             active = false;
             interval = 0;
-        } catch (NullPointerException | IllegalArgumentException ex){
+        } catch (NullPointerException ex){
             System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
     } // Task(String title, int time)
+
+    /**
+     *
+     * @param taskTitle
+     * @param time
+     * @param active
+     */
+    public Task(String taskTitle, Date time, boolean active){
+        try{
+            title = taskTitle;
+            endTime = startTime =  (Date)time.clone();
+            this.active = active;
+            interval = 0;
+        } catch (NullPointerException ex){
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
 
     /**
      * Creates new task, which is inactive and should be performed several times
@@ -39,14 +58,12 @@ public class Task {
      * @param end including time when task could be accomplished
      * @param interval period in seconds, through which task could be accomplished
      */
-    public Task(String taskTitle, int start, int end, int interval){
+    public Task(String taskTitle, Date start, Date end, int interval){
         try{
-            if(start < 0) throw new IllegalArgumentException("Start time can't have negative value");
-            if(end < 0) throw new IllegalArgumentException("End time can't have negative value");
             if(interval < 0) throw new IllegalArgumentException("Interval can't have negative value");
             title =  taskTitle;
-            startTime =  start;
-            endTime = end;
+            startTime =  (Date) start.clone();
+            endTime = (Date) end.clone();
             active = false;
             this.interval = interval;
         } catch (NullPointerException | IllegalArgumentException ex){
@@ -54,6 +71,30 @@ public class Task {
             ex.printStackTrace();
         }
     } // Task(String title, int start, int end, int interval)
+
+    /**
+     *
+     * @param taskTitle
+     * @param start
+     * @param end
+     * @param interval
+     * @param active
+     */
+    public Task(String taskTitle, Date start, Date end, int interval, boolean active){
+        try{
+            if(interval < 0) throw new IllegalArgumentException("Interval can't have negative value");
+            title =  taskTitle;
+            startTime =  (Date) start.clone();
+            endTime = (Date) end.clone();
+            this.active = active;
+            this.interval = interval;
+        } catch (NullPointerException | IllegalArgumentException ex){
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+
 
     /**
      * Creates new task, which is strict copy of task given in parameter
@@ -75,6 +116,33 @@ public class Task {
             ex.printStackTrace();
         }
     } //  Task (Task )
+
+
+    public boolean equals(Object tObj){
+
+        if(tObj == null) return false;
+        if(this == tObj) return true;
+        if(!this.getClass().equals(tObj.getClass())) return false;
+        Task _t = (Task) tObj;
+        if(_t.getTitle().compareToIgnoreCase(this.getTitle())== 0 &&
+                _t.getTime().compareTo(this.getTime()) == 0 &&
+                _t.getRepeatInterval() == this.getRepeatInterval() &&
+                _t.getStartTime().compareTo(this.getStartTime()) == 0 &&
+                _t.getEndTime().compareTo(this.getEndTime()) == 0 &&
+                _t.isActive() == this.isActive())
+            return true;
+        /* title == t.title &&  time == t.time && repeatInterval == t.repeatInterval && startTime == t.startTime) && endTime == t.endTime && active == t.active*/
+        return false;
+    } // boolean equals(Object)
+
+    public int hashCode() {
+        int retHashCode = this.title.hashCode()<< 16
+                + this.getTime().hashCode() << 8
+                + this.getRepeatInterval() +
+                + this.getStartTime().hashCode()
+                + this.getEndTime().hashCode();
+        return retHashCode;
+    } // int hashCode()
 
 
     public String getTitle(){ return title;}
@@ -101,32 +169,26 @@ public class Task {
     /**
      * @return time, from which task could be performed, excluding this value
      */
-    public int getTime(){
-        return (int)startTime;
+    public Date getTime(){
+        return startTime;
     }
 
     /**
      * If this task was repeated, task should be not repeated
      * @param time int
      */
-    public void setTime(int time){
-        try {
-            if (time < 0) throw new IllegalArgumentException("Time can't be negative");
-            endTime = startTime =  time;
-            interval = 0;
-        } catch ( IllegalArgumentException ex ) {
-            System.err.println(ex.getMessage());
-            ex.printStackTrace();
-        }
+    public void setTime(Date time){
+         endTime = startTime =  time;
+         interval = 0;
     } // setTime(int )
 
-    public int getStartTime(){
-        return (int)startTime;
+    public Date getStartTime(){
+        return startTime;
     }
 
 
-    public int getEndTime(){
-        return (int)endTime;
+    public Date getEndTime(){
+        return endTime;
     }
 
 
@@ -135,9 +197,9 @@ public class Task {
         return 0;
     }
 
-    public void setTime(int start, int end, int interval){
-        startTime = (start < 0 || (end - start) < 0)? 0 : start;
-        endTime = (end < 0 || (end - start) < 0)? 0 : end;
+    public void setTime(Date start, Date end, int interval){
+        startTime = start;
+        endTime = end;
         this.interval = (interval < 0)? 0 : interval;
     }
 
@@ -153,29 +215,24 @@ public class Task {
      * @return integer value of next time of task execution, if this task couldn't
      * be executed any more, function returns -1
      */
-    public int nextTimeAfter(int currTime){
-        long returnedValue = -1;
-        try{
-            if (currTime < 0) throw new IllegalArgumentException("Time can't be negative");
+    public Date nextTimeAfter(Date currTime){
+        if(!isActive()) return null;
+        if( currTime.before(startTime)){
+            return startTime;
+        } else if( isRepeated() && endTime.after(currTime)){
+            Date nextTime = startTime;
+            long intervalAmount = startTime.getTime();
+            final long AMOUNT_OF_MILLISECONDS = 1000L;
 
-            if(!active || ( currTime >= endTime && interval == 0)){
-                returnedValue = -1;
-            } else if( currTime < startTime ){
-                returnedValue = startTime;
-            } else {
-                long nextTime;
+            do{
+                if(currTime.before(nextTime)) return nextTime;
+                nextTime.setTime( intervalAmount += (interval * AMOUNT_OF_MILLISECONDS));
 
-                for (nextTime = startTime;nextTime <= currTime;){
-                    nextTime += interval;
-                    if(nextTime > endTime) return -1;
-                }
-                returnedValue = nextTime;
-            }
-        } catch ( IllegalArgumentException ex ) {
-            System.err.println(ex.getMessage());
-            ex.printStackTrace();
-        } finally {
-            return (int)returnedValue;
+            } while(!nextTime.after(endTime));
+
+            return nextTime;
+        } else {
+            return null;
         }
     } // int nextTimeAfter(int currTime)
 
