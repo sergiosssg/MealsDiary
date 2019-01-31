@@ -10,7 +10,7 @@ import ssg.happs.AbstractObject;
  *
  */
 
-public class MeasureValue implements AbstractObject {
+public class MeasureValue implements AbstractObject, Constants {
     /**
      *  either exact value or fuzzy value is assigned
      */
@@ -125,14 +125,78 @@ public class MeasureValue implements AbstractObject {
                           this.fuzzyValue == MeasureFuzzyValue.FULL));
     }
 
+    /**
+     * @param typeMesureUnit
+     * @return
+     *
+     * @TODO: 31.01.2019
+     */
+
     public float convertTo(MeasureUnits typeMesureUnit){
         if(!this.defined || !this.isExactValue()){
             return 0;
         } else if( this.typeOfMesurements == typeMesureUnit){
             return this.value;
-        }else{ // выполняю конвертацию ...
+        }else if((this.typeOfMesurements == MeasureUnits.SECONDS ||
+                this.typeOfMesurements == MeasureUnits.MINUTES ||
+                this.typeOfMesurements == MeasureUnits.HOURS ||
+                this.typeOfMesurements == MeasureUnits.DAYS ||
+                this.typeOfMesurements == MeasureUnits.WEEKS ||
+                this.typeOfMesurements == MeasureUnits.MONTHS  ||
+                this.typeOfMesurements == MeasureUnits.YEARS) &&
+            (typeMesureUnit == MeasureUnits.SECONDS ||
+                    typeMesureUnit == MeasureUnits.MINUTES ||
+                    typeMesureUnit == MeasureUnits.HOURS ||
+                    typeMesureUnit == MeasureUnits.DAYS ||
+                    typeMesureUnit == MeasureUnits.WEEKS ||
+                    typeMesureUnit == MeasureUnits.MONTHS  ||
+                    typeMesureUnit == MeasureUnits.YEARS)){
+            switch (typeMesureUnit){
+                case SECONDS:
+                    switch (this.typeOfMesurements){
+                        case MINUTES:
+                            return this.value * Constants.SECONDS_IN_MINUTE;
+                        case HOURS:
+                            return this.value * Constants.SECONDS_IN_HOUR;
+                        case DAYS:
+                            return this.value * Constants.SECONDS_IN_DAY;
+                        case WEEKS:
+                            return this.value * Constants.SECONDS_IN_DAY * 7;
+                        case MONTHS:
+                            return this.value * Constants.SECONDS_IN_MONTH;
+                        case YEARS:
+                            return this.value * Constants.SECONDS_IN_YEAR;
+                        default:
+                            return this.value;
+                    }
+                case MINUTES:
+
+                    ;
+                    break;
+                case HOURS:
+                    ;
+                    break;
+                case DAYS:
+                    ;
+                    break;
+                case WEEKS:
+                    ;
+                    break;
+                case MONTHS:
+                    ;
+                    break;
+                case YEARS:
+                    ;
+                    break;
+                default:
+                    ;
+            }
+
+        }
+        else{ // выполняю конвертацию ...
             return 0;
         }
+        return 0;
     } // convertTo(MeasureUnits )
 
 
