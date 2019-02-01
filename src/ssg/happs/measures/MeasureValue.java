@@ -30,6 +30,27 @@ public class MeasureValue implements AbstractObject, Constants {
         this.typeOfMegaTypeMesures = MeasureMegaObject.UNKNOWN;
     } // MeasureValue(
 
+
+    public MeasureValue(MeasureUnits _typeOfMesurements, float _value){
+        this.typeOfMesurements = _typeOfMesurements;
+        this.typeOfMegaTypeMesures =
+                (this.typeOfMesurements == MeasureUnits.CALORIES || this.typeOfMesurements == MeasureUnits.KILOCALORIES)?  MeasureMegaObject.ENERGY:
+                        (this.typeOfMesurements == MeasureUnits.SECONDS || this.typeOfMesurements == MeasureUnits.MINUTES ||
+                                this.typeOfMesurements == MeasureUnits.HOURS || this.typeOfMesurements == MeasureUnits.DAYS ||
+                                this.typeOfMesurements == MeasureUnits.WEEKS || this.typeOfMesurements == MeasureUnits.MONTHS ||
+                                this.typeOfMesurements == MeasureUnits.YEARS)? MeasureMegaObject.TIME:
+                                (this.typeOfMesurements == MeasureUnits.MILLIGRAMMS || this.typeOfMesurements == MeasureUnits.GRAMMS ||
+                                        this.typeOfMesurements == MeasureUnits.KILOGRAMMS || this.typeOfMesurements == MeasureUnits.POUNDS)? MeasureMegaObject.WEIGHT:
+                                        (this.typeOfMesurements == MeasureUnits.TEASPOONS || this.typeOfMesurements == MeasureUnits.SPOONS ||
+                                                this.typeOfMesurements == MeasureUnits.GLASSFULS || this.typeOfMesurements == MeasureUnits.LITTERS ||
+                                                this.typeOfMesurements == MeasureUnits.PINTS || this.typeOfMesurements == MeasureUnits.PINCHS)? MeasureMegaObject.VOLUME:
+                                                (this.typeOfMesurements == MeasureUnits.PERCENTAGES || this.typeOfMesurements == MeasureUnits.ITEMS)? MeasureMegaObject.AMOUNT:
+        MeasureMegaObject.UNKNOWN; // split into (is _typeOfMesurements of MeasureMegaObject.LENGTH)
+
+
+        this.defined = true;
+    } // MeasureValue(
+
     public MeasureValue(MeasureUnits _typeOfMesurements,
                         MeasureMegaObject _typeOfMegaTypeMesures,
                         float _value){
