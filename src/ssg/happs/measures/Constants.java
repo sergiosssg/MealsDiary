@@ -18,10 +18,10 @@ public interface Constants {
     static final float MINUTE_IN_SECOND = 0.0166666666666667f;
 
 
-    static final long HOURS_IN_YEAR = 2592000L;
-    static final long HOURS_IN_MONTH = 86400L;
-    static final long HOURS_IN_DAY = 3600L;
-    static final long JUST_ONE_HOUR = 60L;
+    static final long HOURS_IN_YEAR = 365L;
+    static final long HOURS_IN_MONTH = 720L;
+    static final long HOURS_IN_DAY = 24L;
+    static final long JUST_ONE_HOUR = 1L;
     static final float HOURS_IN_MINUTE = 0f;
     static final float HOURS_IN_SECOND = 0.0166666666666667f;
 

@@ -175,6 +175,8 @@ public class MeasureValue implements AbstractObject, Constants {
             switch (typeMesureUnit){
                 case SECONDS:
                     switch (this.typeOfMesurements){
+                        case SECONDS:
+                            return this.value;
                         case MINUTES:
                             return this.value * Constants.SECONDS_IN_MINUTE;
                         case HOURS:
@@ -191,9 +193,24 @@ public class MeasureValue implements AbstractObject, Constants {
                             return this.value;
                     }
                 case MINUTES:
-
-                    ;
-                    break;
+                    switch (this.typeOfMesurements){
+                        case SECONDS:
+                            return this.value * Constants.MINUTE_IN_SECOND;
+                        case MINUTES:
+                            return this.value;
+                        case HOURS:
+                            return this.value * Constants.MINUTES_IN_HOUR;
+                        case DAYS:
+                            return this.value * Constants.MINUTES_IN_DAY;
+                        case WEEKS:
+                            return this.value * Constants.MINUTES_IN_DAY * 7;
+                        case MONTHS:
+                            return this.value * Constants.MINUTES_IN_MONTH;
+                        case YEARS:
+                            return this.value * Constants.MINUTES_IN_YEAR;
+                        default:
+                            return this.value;
+                    }
                 case HOURS:
                     ;
                     break;
