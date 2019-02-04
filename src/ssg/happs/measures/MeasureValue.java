@@ -30,6 +30,27 @@ public class MeasureValue implements AbstractObject, Constants {
         this.typeOfMegaTypeMesures = MeasureMegaObject.UNKNOWN;
     } // MeasureValue(
 
+
+    public MeasureValue(MeasureUnits _typeOfMesurements, float _value){
+        this.typeOfMesurements = _typeOfMesurements;
+        this.typeOfMegaTypeMesures =
+                (this.typeOfMesurements == MeasureUnits.CALORIES || this.typeOfMesurements == MeasureUnits.KILOCALORIES)?  MeasureMegaObject.ENERGY:
+                        (this.typeOfMesurements == MeasureUnits.SECONDS || this.typeOfMesurements == MeasureUnits.MINUTES ||
+                                this.typeOfMesurements == MeasureUnits.HOURS || this.typeOfMesurements == MeasureUnits.DAYS ||
+                                this.typeOfMesurements == MeasureUnits.WEEKS || this.typeOfMesurements == MeasureUnits.MONTHS ||
+                                this.typeOfMesurements == MeasureUnits.YEARS)? MeasureMegaObject.TIME:
+                                (this.typeOfMesurements == MeasureUnits.MILLIGRAMMS || this.typeOfMesurements == MeasureUnits.GRAMMS ||
+                                        this.typeOfMesurements == MeasureUnits.KILOGRAMMS || this.typeOfMesurements == MeasureUnits.POUNDS)? MeasureMegaObject.WEIGHT:
+                                        (this.typeOfMesurements == MeasureUnits.TEASPOONS || this.typeOfMesurements == MeasureUnits.SPOONS ||
+                                                this.typeOfMesurements == MeasureUnits.GLASSFULS || this.typeOfMesurements == MeasureUnits.LITTERS ||
+                                                this.typeOfMesurements == MeasureUnits.PINTS || this.typeOfMesurements == MeasureUnits.PINCHS)? MeasureMegaObject.VOLUME:
+                                                (this.typeOfMesurements == MeasureUnits.PERCENTAGES || this.typeOfMesurements == MeasureUnits.ITEMS)? MeasureMegaObject.AMOUNT:
+        MeasureMegaObject.UNKNOWN; // split into (is _typeOfMesurements of MeasureMegaObject.LENGTH)
+
+
+        this.defined = true;
+    } // MeasureValue(
+
     public MeasureValue(MeasureUnits _typeOfMesurements,
                         MeasureMegaObject _typeOfMegaTypeMesures,
                         float _value){
@@ -154,6 +175,8 @@ public class MeasureValue implements AbstractObject, Constants {
             switch (typeMesureUnit){
                 case SECONDS:
                     switch (this.typeOfMesurements){
+                        case SECONDS:
+                            return this.value;
                         case MINUTES:
                             return this.value * Constants.SECONDS_IN_MINUTE;
                         case HOURS:
@@ -170,9 +193,24 @@ public class MeasureValue implements AbstractObject, Constants {
                             return this.value;
                     }
                 case MINUTES:
-
-                    ;
-                    break;
+                    switch (this.typeOfMesurements){
+                        case SECONDS:
+                            return this.value * Constants.MINUTE_IN_SECOND;
+                        case MINUTES:
+                            return this.value;
+                        case HOURS:
+                            return this.value * Constants.MINUTES_IN_HOUR;
+                        case DAYS:
+                            return this.value * Constants.MINUTES_IN_DAY;
+                        case WEEKS:
+                            return this.value * Constants.MINUTES_IN_DAY * 7;
+                        case MONTHS:
+                            return this.value * Constants.MINUTES_IN_MONTH;
+                        case YEARS:
+                            return this.value * Constants.MINUTES_IN_YEAR;
+                        default:
+                            return this.value;
+                    }
                 case HOURS:
                     ;
                     break;

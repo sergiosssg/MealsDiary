@@ -10,6 +10,7 @@ public enum MeasureUnits implements AbstractObject {
     FUZZY,
     PERCENTAGES,
     CALORIES,
+    KILOCALORIES,
     ITEMS,
     MILLIGRAMMS,
     GRAMMS,
