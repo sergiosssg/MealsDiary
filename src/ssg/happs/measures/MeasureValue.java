@@ -190,14 +190,14 @@ public class MeasureValue implements AbstractObject, Constants {
                         case YEARS:
                             return this.value * Constants.SECONDS_IN_YEAR;
                         default:
-                            return this.value;
+                            return this.value * Constants.JUST_ONE_SECOND;
                     }
                 case MINUTES:
                     switch (this.typeOfMesurements){
                         case SECONDS:
                             return this.value * Constants.MINUTE_IN_SECOND;
                         case MINUTES:
-                            return this.value;
+                            return this.value * Constants.JUST_ONE_MINUTE;
                         case HOURS:
                             return this.value * Constants.MINUTES_IN_HOUR;
                         case DAYS:
@@ -212,11 +212,43 @@ public class MeasureValue implements AbstractObject, Constants {
                             return this.value;
                     }
                 case HOURS:
-                    ;
-                    break;
+                    switch (this.typeOfMesurements) {
+                        case SECONDS:
+                            return this.value * Constants.HOURS_IN_SECOND;
+                        case MINUTES:
+                            return this.value * Constants.HOURS_IN_MINUTE;
+                        case HOURS:
+                            return this.value * Constants.JUST_ONE_HOUR;
+                        case DAYS:
+                            return this.value * Constants.HOURS_IN_DAY;
+                        case WEEKS:
+                            return this.value * Constants.HOURS_IN_DAY * 7;
+                        case MONTHS:
+                            return this.value * Constants.HOURS_IN_MONTH;
+                        case YEARS:
+                            return this.value * Constants.HOURS_IN_YEAR;
+                        default:
+                            return this.value;
+                    }
                 case DAYS:
-                    ;
-                    break;
+                    switch (this.typeOfMesurements) {
+                        case SECONDS:
+                            return this.value * Constants.DAYS_IN_SECOND;
+                        case MINUTES:
+                            return this.value * Constants.DAYS_IN_MINUTE;
+                        case HOURS:
+                            return this.value * Constants.DAYS_IN_HOUR;
+                        case DAYS:
+                            return this.value * Constants.JUST_ONE_DAY;
+                        case WEEKS:
+                            return this.value * Constants.JUST_ONE_DAY * 7;
+                        case MONTHS:
+                            return this.value * Constants.DAYS_IN_MONTH;
+                        case YEARS:
+                            return this.value * Constants.DAYS_IN_YEAR;
+                        default:
+                            return this.value;
+                    }
                 case WEEKS:
                     ;
                     break;

@@ -6,5 +6,5 @@ package ssg.happs;
  * Распорядок
  *
  */
-public class Schedule {
+public interface Schedule {
 }

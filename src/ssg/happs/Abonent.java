@@ -6,5 +6,5 @@ package ssg.happs;
  *
  *
  */
-public class Abonent {
+public interface Abonent {
 }
