@@ -1,6 +1,6 @@
 package ssg.happs.measures;
 
-import ssg.happs.AbstractObject;
+import ssg.happs.ObjectRoot;
 
 /**
  * Created by SSG on 02.07.2018.
@@ -10,7 +10,7 @@ import ssg.happs.AbstractObject;
  *
  */
 
-public class MeasureValue implements AbstractObject, Constants {
+public class MeasureValue implements ObjectRoot, Constants {
     /**
      *  either exact value or fuzzy value is assigned
      */
@@ -172,6 +172,9 @@ public class MeasureValue implements AbstractObject, Constants {
                     typeMesureUnit == MeasureUnits.WEEKS ||
                     typeMesureUnit == MeasureUnits.MONTHS  ||
                     typeMesureUnit == MeasureUnits.YEARS)){
+            /**
+             *  perform time conversions
+             */
             switch (typeMesureUnit){
                 case SECONDS:
                     switch (this.typeOfMesurements){
@@ -250,19 +253,68 @@ public class MeasureValue implements AbstractObject, Constants {
                             return this.value;
                     }
                 case WEEKS:
-                    ;
-                    break;
+
+                    switch (this.typeOfMesurements) {
+                        case SECONDS:
+                            return this.value * Constants.DAYS_IN_SECOND / 7;
+                        case MINUTES:
+                            return this.value * Constants.DAYS_IN_MINUTE / 7;
+                        case HOURS:
+                            return this.value * Constants.DAYS_IN_HOUR / 7;
+                        case DAYS:
+                            return this.value * Constants.JUST_ONE_DAY / 7;
+                        case WEEKS:
+                            return this.value * Constants.JUST_ONE_DAY;
+                        case MONTHS:
+                            return this.value * Constants.DAYS_IN_MONTH / 7;
+                        case YEARS:
+                            return this.value * Constants.WEEKS_IN_YEAR;
+                        default:
+                            return this.value;
+                    }
                 case MONTHS:
-                    ;
-                    break;
+                    switch (this.typeOfMesurements) {
+                        case SECONDS:
+                            return this.value * Constants.MONTHS_IN_SECOND;
+                        case MINUTES:
+                            return this.value * Constants.MONTHS_IN_MINUTE;
+                        case HOURS:
+                            return this.value * Constants.MONTHS_IN_HOUR;
+                        case DAYS:
+                            return this.value * Constants.MONTHS_IN_DAY;
+                        case WEEKS:
+                            return this.value * Constants.MONTHS_IN_DAY * 7;
+                        case MONTHS:
+                            return this.value * Constants.JUST_ONE_MONTH;
+                        case YEARS:
+                            return this.value * Constants.MONTHS_IN_YEAR;
+                        default:
+                            return this.value;
+                    }
                 case YEARS:
-                    ;
-                    break;
+                    switch (this.typeOfMesurements) {
+                        case SECONDS:
+                            return this.value * Constants.YEARS_IN_SECOND;
+                        case MINUTES:
+                            return this.value * Constants.YEARS_IN_MINUTE;
+                        case HOURS:
+                            return this.value * Constants.YEARS_IN_HOUR;
+                        case DAYS:
+                            return this.value * Constants.YEARS_IN_DAY;
+                        case WEEKS:
+                            return this.value * Constants.YEARS_IN_WEEK;
+                        case MONTHS:
+                            return this.value * Constants.YEARS_IN_MONTH;
+                        case YEARS:
+                            return this.value * Constants.JUST_ONE_YEAR;
+                        default:
+                            return this.value;
+                    }
                 default:
                     ;
             }
 
-        }
+        } // time conversion is performed
         else{ // выполняю конвертацию ...
             return 0;
         }

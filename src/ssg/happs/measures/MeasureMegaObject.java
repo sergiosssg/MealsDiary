@@ -1,11 +1,11 @@
 package ssg.happs.measures;
 
-import ssg.happs.AbstractObject;
+import ssg.happs.ObjectRoot;
 
 /**
  * Created by SSG on 03.07.2018.
  */
-public enum MeasureMegaObject implements AbstractObject {
+public enum MeasureMegaObject implements ObjectRoot {
     UNKNOWN,
     WEIGHT,
     LENGTH,

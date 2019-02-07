@@ -1,11 +1,11 @@
 package ssg.happs.measures;
 
-import ssg.happs.AbstractObject;
+import ssg.happs.ObjectRoot;
 
 /**
  * Created by SSG on 02.07.2018.
  */
-public enum MeasureUnits implements AbstractObject {
+public enum MeasureUnits implements ObjectRoot {
     UNKNOWN,
     FUZZY,
     PERCENTAGES,

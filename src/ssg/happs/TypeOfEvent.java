@@ -3,7 +3,7 @@ package ssg.happs;
 /**
  * Created by User on 05.02.2019.
  */
-public enum TypeOfEvent {
+public enum TypeOfEvent implements ObjectRoot{
     DREAM,
     MEAL,
     HIKING,
@@ -14,5 +14,34 @@ public enum TypeOfEvent {
     TVWATCHING,
     NEARCOMPUTERSITTING,
     HARDWORKING,
-    OFFICEWORKING
+    OFFICEWORKING;
+
+    public String getName(){
+        switch (this){
+            case DREAM:
+                return "dream";
+            case MEAL:
+                return "meal";
+            case HIKING:
+                return "hiking";
+            case JOGGING:
+                return "jogging";
+            case FITNES:
+                return "fitness";
+            case SITTING:
+                return "sitting";
+            case LAYING:
+                return "laying";
+            case TVWATCHING:
+                return "tv watching";
+            case NEARCOMPUTERSITTING:
+                return "near computer sitting";
+            case HARDWORKING:
+                return "hard working";
+            case OFFICEWORKING:
+                return "office working";
+            default:
+                return "";
+        }
+    }
 }

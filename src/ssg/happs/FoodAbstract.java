@@ -7,10 +7,10 @@ import java.util.EnumMap;
 /**
  * Created by SSG on 03.07.2018.
  */
-abstract public class FoodAbstract implements Nutrient{
+abstract public class FoodAbstract implements NutrientModel {
 
 
-    //protected Map<String, Nutrient> nutrients;  // here key is name of inserted nutrient
+    //protected Map<String, NutrientModel> nutrients;  // here key is name of inserted nutrient
 
     protected EnumMap<ElementaryNutrient, MeasurePaarUnitValue> elementaryNutrientValues;
 

@@ -4,7 +4,7 @@ import ssg.happs.measures.MeasureFuzzyValue;
 import ssg.happs.measures.MeasureUnits;
 import ssg.happs.measures.MeasureValue;
 
-public class MeasurePaarUnitValue implements Nutrient {
+public class MeasurePaarUnitValue implements NutrientModel {
 
     private MeasureValue mValue;
     private ElementaryNutrient eNutrient;
@@ -41,12 +41,12 @@ public class MeasurePaarUnitValue implements Nutrient {
     }
 
     @Override
-    public float calculateExactValue(ElementaryNutrient which, MeasureUnits inWhatMesureUnit, AbstractObject whichDetailed) {
+    public float calculateExactValue(ElementaryNutrient which, MeasureUnits inWhatMesureUnit, ObjectRoot whichDetailed) {
         return 0;
     }
 
     @Override
-    public MeasureFuzzyValue calculateFuzzyValue(ElementaryNutrient which, MeasureUnits inWhatMesureUnit, AbstractObject whichDetailed) {
+    public MeasureFuzzyValue calculateFuzzyValue(ElementaryNutrient which, MeasureUnits inWhatMesureUnit, ObjectRoot whichDetailed) {
         return null;
     }
 

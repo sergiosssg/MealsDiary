@@ -3,10 +3,10 @@ package ssg.happs;
 /**
  * Created by SSG on 02.07.2018.
  */
-public interface AbstractObject {
+public interface ObjectRoot {
     //public static final int UNDEFINED = 0x0FFFFFFF;
 
-    public  String getName();
+    public String getName();
 
 
-} // interface AbstractObject
+} // interface ObjectRoot

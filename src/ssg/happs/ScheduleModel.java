@@ -6,5 +6,6 @@ package ssg.happs;
  * Распорядок
  *
  */
-public interface Schedule {
+public interface ScheduleModel extends ObjectRoot{
+    long getID();
 }

@@ -5,14 +5,14 @@ package ssg.happs.measures;
  * Created by SSG on 03.07.2018.
  */
 
-import ssg.happs.AbstractObject;
+import ssg.happs.ObjectRoot;
 
 /**
  *  As part of day's
  */
 
 
-public enum MeasureFuzzyValue implements AbstractObject {
+public enum MeasureFuzzyValue implements ObjectRoot {
     EXACT,
     ZERO,      //  0 %
     ALMOSTZERO, // от 0 % до 5 %

@@ -3,7 +3,7 @@ package ssg.happs;
 /**
  * Created by SSG on 02.07.2018.
  */
-public enum ElementaryNutrient implements AbstractObject {
+public enum ElementaryNutrient implements ObjectRoot {
     UNKNOWN,
     ENERGY,
     PROTEINS,

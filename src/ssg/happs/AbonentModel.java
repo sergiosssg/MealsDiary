@@ -6,5 +6,6 @@ package ssg.happs;
  *
  *
  */
-public interface Abonent {
+public interface AbonentModel extends ObjectRoot{
+    long getID();
 }

@@ -7,7 +7,7 @@ import ssg.happs.measures.MeasureValue;
 /**
  * Created by SSG on 02.07.2018.
  */
-public interface Nutrient extends AbstractObject {
+public interface NutrientModel extends ObjectRoot {
 
     public boolean isSimple();
 
@@ -23,7 +23,7 @@ public interface Nutrient extends AbstractObject {
 
     /**
      *
-     * @ TODO: 08.11.2018 need to simplify this function, cut last argument AbstractObject
+     * @ TODO: 08.11.2018 need to simplify this function, cut last argument ObjectRoot
      *
      *
      * @param which
@@ -32,12 +32,12 @@ public interface Nutrient extends AbstractObject {
      * @return
      */
 
-    public float calculateExactValue(ElementaryNutrient which, MeasureUnits inWhatMesureUnit, AbstractObject whichDetailed);
+    public float calculateExactValue(ElementaryNutrient which, MeasureUnits inWhatMesureUnit, ObjectRoot whichDetailed);
 
-    public MeasureFuzzyValue calculateFuzzyValue(ElementaryNutrient which, MeasureUnits inWhatMesureUnit, AbstractObject whichDetailed);
+    public MeasureFuzzyValue calculateFuzzyValue(ElementaryNutrient which, MeasureUnits inWhatMesureUnit, ObjectRoot whichDetailed);
 
     public boolean isCalculable(ElementaryNutrient which);
 
     public MeasureValue getMeasureValue(ElementaryNutrient which);
 
-} // interface Nutrient
+} // interface NutrientModel
