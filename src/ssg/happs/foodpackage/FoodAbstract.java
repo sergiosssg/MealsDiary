@@ -54,7 +54,10 @@ abstract public class FoodAbstract implements NutrientModel {
     }
 
 
-
+    /**
+     *
+     * @return how much elementary nutrients is made up this food
+     */
     abstract public int getAmountOfNutrients();
 
 

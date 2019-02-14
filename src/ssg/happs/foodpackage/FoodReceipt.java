@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class FoodReceipt extends FoodAbstract{
 
-    private ArrayList<FoodAbstract> foods;
+    private ArrayList<NutrientModel> foods;
 
 
 

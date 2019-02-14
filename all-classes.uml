@@ -3,43 +3,121 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="300.5" y="0.0">ssg.happs.Nutrient</node>
-    <node x="601.0" y="579.0">ssg.happs.FoodSimple</node>
-    <node x="444.0" y="256.0">ssg.happs.FoodAbstract</node>
-    <node x="0.0" y="985.0">ssg.happs.measuresystem.MeasureValue</node>
-    <node x="0.0" y="579.0">ssg.happs.FoodConstituant</node>
-    <node x="800.0" y="985.0">ssg.happs.Abonent</node>
-    <node x="496.0" y="985.0">ssg.happs.TypeOfMeals</node>
-    <node x="659.0" y="985.0">ssg.happs.Schedule</node>
+    <node x="609.0" y="109.0">ssg.happs.foodpackage.NutrientModel</node>
+    <node x="694.0" y="188.0">ssg.happs.foodpackage.FoodAbstract</node>
+    <node x="1055.0" y="109.0">ssg.happs.foodpackage.ElementaryNutrient</node>
+    <node x="1364.0" y="109.0">ssg.happs.TypeOfSchedule</node>
+    <node x="755.0" y="109.0">ssg.happs.measures.MeasureMegaObject</node>
+    <node x="933.0" y="109.0">ssg.happs.measures.Constants</node>
+    <node x="953.0" y="188.0">ssg.happs.measures.MeasureValue</node>
+    <node x="297.99999999999994" y="109.0">ssg.happs.measures.MeasureUnits</node>
+    <node x="630.25" y="267.0">ssg.happs.foodpackage.FoodReceipt</node>
+    <node x="506.99999999999994" y="188.0">ssg.happs.MeasurePaarUnitValue</node>
+    <node x="437.99999999999994" y="109.0">ssg.happs.measures.MeasureFuzzyValue</node>
+    <node x="0.0" y="109.0">ssg.happs.ScheduleModel</node>
+    <node x="150.0" y="109.0">ssg.happs.AbonentModel</node>
+    <node x="764.25" y="267.0">ssg.happs.foodpackage.FoodSimple</node>
+    <node x="1226.0" y="109.0">ssg.happs.foodpackage.TypeOfMeals</node>
+    <node x="780.0" y="0.0">ssg.happs.ObjectRoot</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="ssg.happs.FoodAbstract" target="ssg.happs.Nutrient">
-      <point x="0.0" y="-136.5" />
-      <point x="0.0" y="103.0" />
+    <edge source="ssg.happs.MeasurePaarUnitValue" target="ssg.happs.foodpackage.NutrientModel">
+      <point x="0.0" y="-14.5" />
+      <point x="590.5" y="163.0" />
+      <point x="640.5" y="163.0" />
+      <point x="-31.5" y="14.5" />
     </edge>
-    <edge source="ssg.happs.FoodConstituant" target="ssg.happs.FoodAbstract">
-      <point x="0.0" y="-180.5" />
-      <point x="290.5" y="554.0" />
-      <point x="517.5" y="554.0" />
-      <point x="-73.5" y="136.5" />
+    <edge source="ssg.happs.measures.MeasureValue" target="ssg.happs.ObjectRoot">
+      <point x="30.5" y="-14.5" />
+      <point x="1044.5" y="79.0" />
+      <point x="853.6363636363635" y="79.0" />
+      <point x="19.636363636363626" y="14.5" />
     </edge>
-    <edge source="ssg.happs.FoodSimple" target="ssg.happs.FoodAbstract">
-      <point x="0.0" y="-180.5" />
-      <point x="891.5" y="554.0" />
-      <point x="664.5" y="554.0" />
-      <point x="73.5" y="136.5" />
+    <edge source="ssg.happs.foodpackage.NutrientModel" target="ssg.happs.ObjectRoot">
+      <point x="0.0" y="-14.5" />
+      <point x="672.0" y="89.0" />
+      <point x="824.181818181818" y="89.0" />
+      <point x="-9.81818181818187" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.measures.MeasureUnits" target="ssg.happs.ObjectRoot">
+      <point x="0.0" y="-14.5" />
+      <point x="357.99999999999994" y="69.0" />
+      <point x="804.5454545454545" y="69.0" />
+      <point x="-29.454545454545496" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.ScheduleModel" target="ssg.happs.ObjectRoot">
+      <point x="0.0" y="-14.5" />
+      <point x="65.0" y="49.0" />
+      <point x="784.9090909090908" y="49.0" />
+      <point x="-49.09090909090912" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.foodpackage.FoodAbstract" target="ssg.happs.foodpackage.NutrientModel">
+      <point x="0.0" y="-14.5" />
+      <point x="753.5" y="163.0" />
+      <point x="703.5" y="163.0" />
+      <point x="31.5" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.foodpackage.TypeOfMeals" target="ssg.happs.ObjectRoot">
+      <point x="0.0" y="-14.5" />
+      <point x="1285.0" y="59.0" />
+      <point x="873.2727272727273" y="59.0" />
+      <point x="39.27272727272725" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.TypeOfSchedule" target="ssg.happs.ObjectRoot">
+      <point x="0.0" y="-14.5" />
+      <point x="1431.5" y="49.0" />
+      <point x="883.090909090909" y="49.0" />
+      <point x="49.09090909090912" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.measures.MeasureValue" target="ssg.happs.measures.Constants">
+      <point x="-30.5" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.measures.MeasureMegaObject" target="ssg.happs.ObjectRoot">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.AbonentModel" target="ssg.happs.ObjectRoot">
+      <point x="0.0" y="-14.5" />
+      <point x="214.0" y="59.0" />
+      <point x="794.7272727272727" y="59.0" />
+      <point x="-39.27272727272725" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.foodpackage.FoodReceipt" target="ssg.happs.foodpackage.FoodAbstract">
+      <point x="0.0" y="-14.5" />
+      <point x="687.25" y="242.0" />
+      <point x="723.75" y="242.0" />
+      <point x="-29.75" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.foodpackage.FoodSimple" target="ssg.happs.foodpackage.FoodAbstract">
+      <point x="0.0" y="-14.5" />
+      <point x="819.75" y="242.0" />
+      <point x="783.25" y="242.0" />
+      <point x="29.75" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.measures.MeasureFuzzyValue" target="ssg.happs.ObjectRoot">
+      <point x="0.0" y="-14.5" />
+      <point x="513.5" y="79.0" />
+      <point x="814.3636363636363" y="79.0" />
+      <point x="-19.636363636363626" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.measures.Constants" target="ssg.happs.ObjectRoot">
+      <point x="0.0" y="-14.5" />
+      <point x="983.5" y="89.0" />
+      <point x="843.8181818181818" y="89.0" />
+      <point x="9.81818181818187" y="14.5" />
+    </edge>
+    <edge source="ssg.happs.foodpackage.ElementaryNutrient" target="ssg.happs.ObjectRoot">
+      <point x="0.0" y="-14.5" />
+      <point x="1130.5" y="69.0" />
+      <point x="863.4545454545455" y="69.0" />
+      <point x="29.454545454545496" y="14.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="798.5" y="346.5" />
-  <SelectedNodes>
-    <node>ssg.happs.Nutrient</node>
-  </SelectedNodes>
-  <Categories>
-    <Category>Constructors</Category>
-    <Category>Methods</Category>
-    <Category>Properties</Category>
-  </Categories>
+  <settings layout="Hierarchic Group" zoom="0.734977862112587" x="780.5" y="148.0" />
+  <SelectedNodes />
+  <Categories />
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>
