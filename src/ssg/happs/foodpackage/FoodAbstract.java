@@ -1,5 +1,6 @@
-package ssg.happs;
+package ssg.happs.foodpackage;
 
+import ssg.happs.MeasurePaarUnitValue;
 import ssg.happs.measures.MeasureUnits;
 
 import java.util.EnumMap;
@@ -29,6 +30,7 @@ abstract public class FoodAbstract implements NutrientModel {
         this.elementaryNutrientValues = new EnumMap<ElementaryNutrient, MeasurePaarUnitValue>(ElementaryNutrient.class);
         this.elementaryNutrientValues.put(ElementaryNutrient.LIQUID,
                 new MeasurePaarUnitValue());
+        this.amount = 0;
     }
 
 
@@ -38,6 +40,7 @@ abstract public class FoodAbstract implements NutrientModel {
         this.elementaryNutrientValues = new EnumMap<ElementaryNutrient, MeasurePaarUnitValue>(ElementaryNutrient.class);
         this.elementaryNutrientValues.put(ElementaryNutrient.LIQUID,
                 new MeasurePaarUnitValue());
+        this.amount = 0;
     }
 
 
@@ -46,6 +49,8 @@ abstract public class FoodAbstract implements NutrientModel {
         this.typeOfMesureUnits = MeasureUnits.GRAMMS;
         this.elementaryNutrientValues = new EnumMap<ElementaryNutrient, MeasurePaarUnitValue>(ElementaryNutrient.class);
         this.elementaryNutrientValues.put(elementaryNutrient, _value);
+
+        this.amount = _value.getAmount();
     }
 
 

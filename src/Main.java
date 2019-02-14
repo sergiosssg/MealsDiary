@@ -1,5 +1,4 @@
-import ssg.happs.ElementaryNutrient;
-import ssg.happs.MeasurePaarUnitValue;
+import ssg.happs.foodpackage.ElementaryNutrient;
 
 public class Main {
 

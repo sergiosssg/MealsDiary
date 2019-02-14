@@ -1,5 +1,7 @@
 package ssg.happs;
 
+import ssg.happs.foodpackage.ElementaryNutrient;
+import ssg.happs.foodpackage.NutrientModel;
 import ssg.happs.measures.MeasureFuzzyValue;
 import ssg.happs.measures.MeasureUnits;
 import ssg.happs.measures.MeasureValue;

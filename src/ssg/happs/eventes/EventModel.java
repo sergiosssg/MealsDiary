@@ -2,7 +2,6 @@ package ssg.happs.eventes;
 
 import ssg.happs.AbonentModel;
 import ssg.happs.ObjectRoot;
-import ssg.happs.TypeOfEvent;
 
 /**
  * Created by User on 05.02.2019.

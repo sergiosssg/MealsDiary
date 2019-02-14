@@ -1,9 +1,11 @@
-package ssg.happs;
+package ssg.happs.eventes;
+
+import ssg.happs.ObjectRoot;
 
 /**
  * Created by User on 05.02.2019.
  */
-public enum TypeOfEvent implements ObjectRoot{
+public enum TypeOfEvent implements ObjectRoot {
     DREAM,
     MEAL,
     HIKING,
@@ -43,5 +45,5 @@ public enum TypeOfEvent implements ObjectRoot{
             default:
                 return "";
         }
-    }
-}
+    } // getName(
+} // enum TypeOfEvent

@@ -1,4 +1,6 @@
-package ssg.happs;
+package ssg.happs.foodpackage;
+
+import ssg.happs.ObjectRoot;
 
 /**
  * Created by SSG on 02.07.2018.

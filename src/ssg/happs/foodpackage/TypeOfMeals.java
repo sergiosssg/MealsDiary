@@ -1,9 +1,11 @@
-package ssg.happs;
+package ssg.happs.foodpackage;
+
+import ssg.happs.ObjectRoot;
 
 /**
  * Created by SSG on 03.06.2018.
  */
-public enum TypeOfMeals implements ObjectRoot{
+public enum TypeOfMeals implements ObjectRoot {
     EARLYBREAKFAST, // с 5-00 до 7-00
     BREAKFAST,      // с 6-00 до 10-00
     BRUNCH,         // с 9-00 до 12-00
@@ -45,4 +47,4 @@ public enum TypeOfMeals implements ObjectRoot{
                 return "";
         }
     }
-}
+} // enum TypeOfMeals
