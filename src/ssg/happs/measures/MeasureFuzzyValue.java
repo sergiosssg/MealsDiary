@@ -8,11 +8,12 @@ package ssg.happs.measures;
 import ssg.happs.ObjectRoot;
 
 /**
- *  As part of day's
+ *  As part of day's quota
  */
 
 
 public enum MeasureFuzzyValue implements ObjectRoot {
+
     EXACT,
     ZERO,      //  0 %
     ALMOSTZERO, // от 0 % до 5 %

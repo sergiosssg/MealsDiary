@@ -4,7 +4,7 @@ import ssg.happs.AbonentModel;
 import ssg.happs.ObjectRoot;
 
 /**
- * Created by User on 05.02.2019.
+ * Created by SSG on 05.02.2019.
  */
 public interface EventModel extends ObjectRoot {
 

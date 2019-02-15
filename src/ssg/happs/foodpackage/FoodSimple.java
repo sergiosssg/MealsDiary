@@ -6,7 +6,11 @@ import ssg.happs.measures.MeasureUnits;
 import ssg.happs.measures.MeasureValue;
 
 /**
- * Created by User on 14.02.2019.
+ * Created by SSG on 14.02.2019.
+ *
+ * store food, can't be broken down into more simple food staff,
+ * e.g.  fresh uncooked potato, tomato, white bread, ordinary crude milk etc.
+ *
  */
 public class FoodSimple extends FoodAbstract{
 
@@ -19,7 +23,7 @@ public class FoodSimple extends FoodAbstract{
 
     @Override
     public int getAmountOfNutrients() {
-        return 0;
+        return super.elementaryNutrientValues.size();
     }
 
     @Override
@@ -70,12 +74,6 @@ public class FoodSimple extends FoodAbstract{
     @Override
     public MeasureValue getMeasureValue(ElementaryNutrient which) {
         return null;
-    }
-
-
-    public void addNewFood(NutrientModel element){
-
-
     }
 
 

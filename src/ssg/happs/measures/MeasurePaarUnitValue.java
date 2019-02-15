@@ -1,10 +1,8 @@
-package ssg.happs;
+package ssg.happs.measures;
 
+import ssg.happs.ObjectRoot;
 import ssg.happs.foodpackage.ElementaryNutrient;
 import ssg.happs.foodpackage.NutrientModel;
-import ssg.happs.measures.MeasureFuzzyValue;
-import ssg.happs.measures.MeasureUnits;
-import ssg.happs.measures.MeasureValue;
 
 public class MeasurePaarUnitValue implements NutrientModel {
 
@@ -27,13 +25,11 @@ public class MeasurePaarUnitValue implements NutrientModel {
 
     }
 
-    @Override
-    public float getAmount() {
+    public float getFoodAmount() {
         return mValue.getValue();
     }
 
-    @Override
-    public void setAmount(float _amount) {
+    public void setFoodAmount(float _amount) {
 
     }
 
@@ -61,6 +57,13 @@ public class MeasurePaarUnitValue implements NutrientModel {
     public MeasureValue getMeasureValue(ElementaryNutrient which) {
         if(this.eNutrient != which) return null;
         return mValue;
+    }
+
+
+    // ??????????
+    @Override
+    public void addNewFood(NutrientModel element) {
+
     }
 
     public boolean isThisElementaryNutrient(ElementaryNutrient which){

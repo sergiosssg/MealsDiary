@@ -1,6 +1,6 @@
 package ssg.happs.foodpackage;
 
-import ssg.happs.MeasurePaarUnitValue;
+import ssg.happs.measures.MeasurePaarUnitValue;
 import ssg.happs.measures.MeasureUnits;
 
 import java.util.EnumMap;
@@ -17,7 +17,7 @@ abstract public class FoodAbstract implements NutrientModel {
 
     protected String name;
     protected MeasureUnits typeOfMesureUnits;
-    protected float amount;
+    protected float foodAmount;
 
 
 
@@ -30,7 +30,7 @@ abstract public class FoodAbstract implements NutrientModel {
         this.elementaryNutrientValues = new EnumMap<ElementaryNutrient, MeasurePaarUnitValue>(ElementaryNutrient.class);
         this.elementaryNutrientValues.put(ElementaryNutrient.LIQUID,
                 new MeasurePaarUnitValue());
-        this.amount = 0;
+        this.foodAmount = 0;
     }
 
 
@@ -40,7 +40,7 @@ abstract public class FoodAbstract implements NutrientModel {
         this.elementaryNutrientValues = new EnumMap<ElementaryNutrient, MeasurePaarUnitValue>(ElementaryNutrient.class);
         this.elementaryNutrientValues.put(ElementaryNutrient.LIQUID,
                 new MeasurePaarUnitValue());
-        this.amount = 0;
+        this.foodAmount = 0;
     }
 
 
@@ -50,7 +50,7 @@ abstract public class FoodAbstract implements NutrientModel {
         this.elementaryNutrientValues = new EnumMap<ElementaryNutrient, MeasurePaarUnitValue>(ElementaryNutrient.class);
         this.elementaryNutrientValues.put(elementaryNutrient, _value);
 
-        this.amount = _value.getAmount();
+        this.foodAmount = _value.getFoodAmount();
     }
 
 
@@ -79,15 +79,18 @@ abstract public class FoodAbstract implements NutrientModel {
         this.name = _name;
     }
 
-    @Override
-    public float getAmount(){
-        return this.amount;
+    public float getFoodAmount(){
+        return this.foodAmount;
     }
 
-    @Override
-    public void setAmount(float _amount){
-        this.amount = _amount;
+    public void setFoodAmount(float _amount){
+        this.foodAmount = _amount;
     }
 
+
+    @Override
+    public void addNewFood(NutrientModel element){
+
+    }
 
 } // class  FoodAbstract

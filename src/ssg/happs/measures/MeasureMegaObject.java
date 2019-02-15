@@ -4,7 +4,11 @@ import ssg.happs.ObjectRoot;
 
 /**
  * Created by SSG on 03.07.2018.
+ *
+ * most collective abstract type of measure unit
+ *
  */
+
 public enum MeasureMegaObject implements ObjectRoot {
     UNKNOWN,
     WEIGHT,
@@ -31,7 +35,7 @@ public enum MeasureMegaObject implements ObjectRoot {
             case ENERGY:
                 return "energy";
             case AMOUNT:
-                return "amount";
+                return "foodAmount";
             case VOLUME:
                 return "volume";
             default:
