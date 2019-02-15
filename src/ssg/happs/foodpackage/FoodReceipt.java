@@ -8,11 +8,11 @@ import ssg.happs.measures.MeasureValue;
 import java.util.ArrayList;
 
 /**
- * Created by User on 14.02.2019.
+ * Created by SSG on 14.02.2019.
  */
 public class FoodReceipt extends FoodAbstract{
 
-    private ArrayList<FoodAbstract> foods;
+    private ArrayList<NutrientModel> foods;
 
 
 

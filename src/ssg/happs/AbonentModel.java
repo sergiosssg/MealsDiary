@@ -8,4 +8,10 @@ package ssg.happs;
  */
 public interface AbonentModel extends ObjectRoot{
     long getID();
-}
+
+    int getAgeYears();
+
+    long getBirthDate();
+
+
+} // interface AbonentModel

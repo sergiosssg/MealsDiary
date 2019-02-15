@@ -2,6 +2,13 @@ package ssg.happs.measures;
 
 import ssg.happs.ObjectRoot;
 
+
+/**
+ * Created by SSG on 02.02.2019.
+ */
+
+
+
 public interface Constants extends ObjectRoot{
 
     static final long SECONDS_IN_YEAR = 31536000L;

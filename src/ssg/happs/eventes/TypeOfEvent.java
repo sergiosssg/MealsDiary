@@ -3,7 +3,7 @@ package ssg.happs.eventes;
 import ssg.happs.ObjectRoot;
 
 /**
- * Created by User on 05.02.2019.
+ * Created by SSG on 05.02.2019.
  */
 public enum TypeOfEvent implements ObjectRoot {
     DREAM,

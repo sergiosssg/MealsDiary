@@ -16,9 +16,9 @@ public interface NutrientModel extends ObjectRoot {
 
     public void setName(String name);
 
-    public float getAmount();
+    public float getFoodAmount();
 
-    public void setAmount(float _amount);
+    public void setFoodAmount(float _amount);
 
     public boolean isEtalon();
 
@@ -33,12 +33,14 @@ public interface NutrientModel extends ObjectRoot {
      * @return
      */
 
-    public float calculateExactValue(ElementaryNutrient which, MeasureUnits inWhatMesureUnit, ObjectRoot whichDetailed);
+    float calculateExactValue(ElementaryNutrient which, MeasureUnits inWhatMesureUnit, ObjectRoot whichDetailed);
 
-    public MeasureFuzzyValue calculateFuzzyValue(ElementaryNutrient which, MeasureUnits inWhatMesureUnit, ObjectRoot whichDetailed);
+    MeasureFuzzyValue calculateFuzzyValue(ElementaryNutrient which, MeasureUnits inWhatMesureUnit, ObjectRoot whichDetailed);
 
-    public boolean isCalculable(ElementaryNutrient which);
+    boolean isCalculable(ElementaryNutrient which);
 
-    public MeasureValue getMeasureValue(ElementaryNutrient which);
+    MeasureValue getMeasureValue(ElementaryNutrient which);
+
+    void addNewFood(NutrientModel element);
 
 } // interface NutrientModel

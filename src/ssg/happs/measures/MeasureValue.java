@@ -8,6 +8,9 @@ import ssg.happs.ObjectRoot;
  * связка еденицы измерения и значения, причём в качестве значения может быть как точное число, с плавающей точкой,
  * так и нечеткое значение типа
  *
+ * connector of measure unit and it's value, and more than as value could be assigned as exact float and also
+ * fuzzy type value
+ *
  */
 
 public class MeasureValue implements ObjectRoot, Constants {
